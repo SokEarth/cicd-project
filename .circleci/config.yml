@@ -212,11 +212,11 @@ jobs:
           - run:
                 name: Add back-end ip to ansible inventory
                 command: |
-                  BACKEND_PUBLIC_IP=$(aws ec2 describe-instances \
+                  BACKEND_IP=$(aws ec2 describe-instances \
                     --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
                     --query 'Reservations[*].Instances[*].PublicDnsName' \
                     --output text)
-                  echo $BACKEND_PUBLIC_IP >> .circleci/ansible/inventory.txt
+                  echo $BACKEND_IP >> .circleci/ansible/inventory.txt
                   cat ~/project/.circleci/ansible/inventory.txt
           - persist_to_workspace:
                 root: ~/
@@ -231,7 +231,7 @@ jobs:
         steps:
           - checkout
           - add_ssh_keys:
-                fingerprints: ["97:2a:b6:9b:35:49:17:e7:a1:d4:8c:a2:4e:4d:d6:1b"]
+                fingerprints: [98:bc:29:05:05:b2:be:13:47:f9:4b:70:06:bc:21:d5]
           - attach_workspace:
                 at: ~/
           - run:
@@ -293,13 +293,13 @@ jobs:
           - run:
                 name: Get backend url
                 command: |
-                  BACKEND_PUBLIC_IP=$(aws ec2 describe-instances \
+                  BACKEND_IP=$(aws ec2 describe-instances \
                       --filters "Name=tag:Name, Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
                       --query 'Reservations[*].Instances[*].PublicDnsName' \
                       --output text)
-                    export API_URL="http://${BACKEND_PUBLIC_IP}:3030"
+                    export API_URL="http://${BACKEND_IP}:3030"
                     echo "API_URL =${API_URL}"
-                    echo API_URL="http://${BACKEND_PUBLIC_IP}:3030" >> frontend/.env
+                    echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
                     cat frontend/.env
           - run:
                 name: Deploy frontend objects
@@ -319,7 +319,7 @@ jobs:
         steps:
           - checkout
           - add_ssh_keys:
-                fingerprints: ["97:2a:b6:9b:35:49:17:e7:a1:d4:8c:a2:4e:4d:d6:1b"]
+                fingerprints: [98:bc:29:05:05:b2:be:13:47:f9:4b:70:06:bc:21:d5]
           - attach_workspace:
                 at: ~/
           - restore_cache:
@@ -376,12 +376,12 @@ jobs:
                 name: Backend smoke test.
                 command: |
                   # your code here
-                  BACKEND_PUBLIC_IP=$(aws ec2 describe-instances \
+                  BACKEND_IP=$(aws ec2 describe-instances \
                     --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
                     --query 'Reservations[*].Instances[*].PublicDnsName' \
                     --output text)
-                  echo ${BACKEND_PUBLIC_IP}
-                  export API_URL=http://${BACKEND_PUBLIC_IP}:3030
+                  echo ${BACKEND_IP}
+                  export API_URL=http://${BACKEND_IP}:3030
                   
                   echo ${API_URL}
                   echo "sleeping for 1 minute"
