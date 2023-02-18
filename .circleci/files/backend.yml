@@ -47,7 +47,7 @@ Resources:
             RootDeviceName: /dev/xvda
             RootDeviceType: ebs
             VirtualizationType: hvm
-		        HibernationOptions:
+            HibernationOptions:
               Configured: true
     EIP:
         Type: AWS::EC2::EIP
