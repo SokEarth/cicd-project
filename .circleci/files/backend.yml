@@ -44,13 +44,6 @@ Resources:
             Tags:
               - Key: Name
                 Value: !Sub backend-${ID}
-            BlockDeviceMappings:
-              - DeviceName: /dev/xvda
-                Ebs:
-                  VolumeSize: '50'
-                  VolumeType: gp2
-            HibernationOptions:
-              Configured: true
     EIP:
         Type: AWS::EC2::EIP
         Properties:
