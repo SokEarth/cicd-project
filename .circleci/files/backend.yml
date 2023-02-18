@@ -44,6 +44,11 @@ Resources:
             Tags:
               - Key: Name
                 Value: !Sub backend-${ID}
+            RootDeviceName: /dev/xvda
+            RootDeviceType: ebs
+            VirtualizationType: hvm
+		        HibernationOptions:
+              Configured: true
     EIP:
         Type: AWS::EC2::EIP
         Properties:
