@@ -1,4 +1,4 @@
 Github URL [URL01]: https://github.com/SokEarth/cicd-project
-[URL02]
+S3 bucket URL [URL02]: 
 Cloudfront URL [URL03]: 
 [URL04]
