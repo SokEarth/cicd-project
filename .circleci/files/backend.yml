@@ -44,9 +44,11 @@ Resources:
             Tags:
               - Key: Name
                 Value: !Sub backend-${ID}
-            RootDeviceName: /dev/xvda
-            RootDeviceType: ebs
-            VirtualizationType: hvm
+            BlockDeviceMappings:
+              - DeviceName: /dev/xvda
+                Ebs:
+                  VolumeSize: '50'
+                  VolumeType: gp2
             HibernationOptions:
               Configured: true
     EIP:
