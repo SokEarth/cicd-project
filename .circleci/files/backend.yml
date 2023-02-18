@@ -45,7 +45,7 @@ Resources:
               - Key: Name
                 Value: !Sub backend-${ID}
             HibernationOptions:
-              Configured: true
+                Configured: true
     EIP:
         Type: AWS::EC2::EIP
         Properties:
