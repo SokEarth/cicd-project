@@ -40,7 +40,7 @@ Resources:
             SecurityGroups:
               - !Ref InstanceSecurityGroup
             KeyName: udaproj3
-            ImageId: ami-09cd747c78a9add63
+            ImageId: ami-00874d747dde814fa
             Tags:
               - Key: Name
                 Value: !Sub backend-${ID}
